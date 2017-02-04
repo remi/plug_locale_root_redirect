@@ -30,8 +30,9 @@ defmodule PlugLocaleRootRedirect do
   Call the plug.
   """
   def call(conn = %Plug.Conn{status: status, request_path: request_path}, locales) when request_path == @root_path and (is_nil(status) or (status < 300 and status >= 400)) do
-    {_, locale, _} = conn |> PlugBest.best_language_or_first(locales)
-    location = redirect_location(conn, "/#{locale}")
+    location = conn
+    |> PlugBest.best_language_or_first(locales)
+    |> redirect_location(conn)
 
     conn
     |> put_resp_header(@location_header, location)
@@ -42,11 +43,11 @@ defmodule PlugLocaleRootRedirect do
 
   def call(conn, _), do: conn
 
-  defp redirect_location(conn, path) do
+  defp redirect_location({_, locale, _}, conn) do
     conn
     |> request_uri
     |> URI.parse
-    |> Map.put(:path, path)
+    |> Map.put(:path, "/#{locale}")
     |> URI.to_string
   end
 

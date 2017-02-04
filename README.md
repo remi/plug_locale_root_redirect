@@ -46,6 +46,14 @@ Location: /fr
 $ curl -sI "http://localhost:4000" -H "Accept-Language: fr;q=0.4, en;q=0.8" | grep "302\|Location"
 HTTP/1.1 302 Found
 Location: /en
+
+$ curl -sI "http://localhost:4000" -H "Accept-Language: es;q=1, ru;q=0.5" | grep "302\|Location"
+HTTP/1.1 302 Found
+Location: /en
+
+$ curl -sI "http://localhost:4000" | grep "302\|Location"
+HTTP/1.1 302 Found
+Location: /en
 ```
 
 If a request is made to `/`, it will be redirected to `/en` or `/fr`, depending

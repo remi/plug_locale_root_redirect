@@ -36,6 +36,18 @@ defmodule Endpoint do
 end
 ```
 
+The result:
+
+```bash
+$ curl -sI "http://localhost:4000" -H "Accept-Language: fr;q=1, en;q=0.8" | grep "302\|Location"
+HTTP/1.1 302 Found
+Location: /fr
+
+$ curl -sI "http://localhost:4000" -H "Accept-Language: fr;q=0.4, en;q=0.8" | grep "302\|Location"
+HTTP/1.1 302 Found
+Location: /en
+```
+
 If a request is made to `/`, it will be redirected to `/en` or `/fr`, depending
 on the request locale preference. If the request has no preference between
 supported locales, it will be redirected to the first locale, `/en` in this

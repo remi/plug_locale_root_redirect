@@ -1,9 +1,12 @@
 defmodule PlugLocaleRootRedirect.Mixfile do
   use Mix.Project
 
+  # Constants
+  @version "0.1.1"
+
   def project do
     [app: :plug_locale_root_redirect,
-     version: "0.1.0",
+     version: @version,
      elixir: "~> 1.2",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,

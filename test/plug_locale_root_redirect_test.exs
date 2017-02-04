@@ -34,6 +34,7 @@ defmodule PlugLocaleRootRedirectTest do
 
     assert conn.status == 302
     assert get_resp_header(conn, "location") === ["http://www.example.com/fr?foo=bar"]
+    assert get_resp_header(conn, "vary") === ["Accept-Language"]
   end
 
   test "redirects to locale path when all supported locales do not match" do
@@ -41,6 +42,7 @@ defmodule PlugLocaleRootRedirectTest do
 
     assert conn.status == 302
     assert get_resp_header(conn, "location") === ["http://www.example.com/en?foo=bar"]
+    assert get_resp_header(conn, "vary") === ["Accept-Language"]
   end
 
   test "does not redirect to locale path when request is not on root path" do
@@ -48,6 +50,7 @@ defmodule PlugLocaleRootRedirectTest do
 
     assert conn.status == 404
     assert get_resp_header(conn, "location") == []
+    assert get_resp_header(conn, "vary") == []
   end
 
   test "does not redirect to locale path when request is already a redirection" do
@@ -55,5 +58,6 @@ defmodule PlugLocaleRootRedirectTest do
 
     assert conn.status == 301
     assert get_resp_header(conn, "location") == ["http://www.example.com/someplace-else"]
+    assert get_resp_header(conn, "vary") == []
   end
 end

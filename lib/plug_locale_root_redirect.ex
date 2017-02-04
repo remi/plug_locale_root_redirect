@@ -7,6 +7,8 @@ defmodule PlugLocaleRootRedirect do
 
   @root_path "/"
   @location_header "location"
+  @vary_header "vary"
+  @vary_value "Accept-Language"
   @status_code 302
   @html_template """
     <!DOCTYPE html>
@@ -33,6 +35,7 @@ defmodule PlugLocaleRootRedirect do
 
     conn
     |> put_resp_header(@location_header, location)
+    |> put_resp_header(@vary_header, @vary_value)
     |> send_resp(@status_code, String.replace(@html_template, "%s", location))
     |> halt
   end

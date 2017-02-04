@@ -29,7 +29,7 @@ defmodule PlugLocaleRootRedirect do
   @doc """
   Call the plug.
   """
-  def call(conn = %Plug.Conn{status: status, request_path: request_path}, locales) when request_path == @root_path and is_nil(status) or (status < 300 and status >= 400) do
+  def call(conn = %Plug.Conn{status: status, request_path: request_path}, locales) when request_path == @root_path and (is_nil(status) or (status < 300 and status >= 400)) do
     {_, locale, _} = conn |> PlugBest.best_language_or_first(locales)
     location = redirect_location(conn, "/#{locale}")
 

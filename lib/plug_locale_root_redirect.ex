@@ -22,7 +22,7 @@ defmodule PlugLocaleRootRedirect do
   """
 
   @doc """
-  Initialize this plug with a list of supported locale.
+  Initialize the plug with a list of supported locales.
   """
   def init(opts), do: Keyword.fetch!(opts, :locales)
 

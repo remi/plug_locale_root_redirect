@@ -44,6 +44,6 @@ case.
 License
 -------
 
-`PlugLocaleRootRedirect` is © 2016 [Rémi Prévost](http://exomel.com) and may be
+`PlugLocaleRootRedirect` is © 2017 [Rémi Prévost](http://exomel.com) and may be
 freely distributed under the [MIT license](https://github.com/remiprev/plug_locale_root_redirect/blob/master/LICENSE.md). See the
 `LICENSE.md` file for more information.

@@ -2,7 +2,7 @@ defmodule PlugLocaleRootRedirect.Mixfile do
   use Mix.Project
 
   # Constants
-  @version "0.1.2"
+  @version "0.1.3"
 
   def project do
     [app: :plug_locale_root_redirect,

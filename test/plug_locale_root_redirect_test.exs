@@ -23,7 +23,8 @@ defmodule PlugLocaleRootRedirectTest do
   defp get(path_and_query_string, accept_language_header) do
     uri = URI.parse("http://www.example.com#{path_and_query_string}")
 
-    conn(:get, uri)
+    :get
+    |> conn(uri)
     |> put_req_header("accept-language", accept_language_header)
     |> TestApp.call(TestApp.init([]))
   end

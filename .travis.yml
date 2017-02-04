@@ -9,3 +9,7 @@ elixir:
 
 otp_release:
   - 18.2
+
+script:
+  - mix credo --strict
+  - mix test

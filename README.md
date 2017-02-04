@@ -5,7 +5,7 @@ PlugLocaleRootRedirect
 [![Hex.pm](https://img.shields.io/hexpm/v/plug_locale_root_redirect.svg?style=flat-square)](https://hex.pm/packages/plug_locale_root_redirect)
 
 `PlugLocaleRootRedirect` ensures that all requests to the root path (`/`) are
-redirected to the best locale path, from a list of supported locales
+redirected to the best locale path, from a list of supported locales.
 
 Installation
 ------------

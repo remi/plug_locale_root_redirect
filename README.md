@@ -32,7 +32,7 @@ successful redirection to your locale path.
 
 ```elixir
 defmodule Endpoint do
-  plug PlugLocaleRootRedirect, locales: %w(en fr)
+  plug PlugLocaleRootRedirect, locales: ~w(en fr)
 end
 ```
 

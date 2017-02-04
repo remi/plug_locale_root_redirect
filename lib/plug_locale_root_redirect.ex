@@ -5,6 +5,7 @@ defmodule PlugLocaleRootRedirect do
   # Imports
   import Plug.Conn
 
+  # Constants
   @root_path "/"
   @location_header "location"
   @vary_header "vary"

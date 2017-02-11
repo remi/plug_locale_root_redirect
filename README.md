@@ -17,7 +17,7 @@ Add `plug_locale_root_redirect` to the `deps` function in your project's `mix.ex
 defp deps do
   [
     …,
-    {:plug_locale_root_redirect, "~> 0.1"}
+    {:plug_locale_root_redirect, "~> 0.2"}
   ]
 end
 ```

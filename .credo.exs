@@ -4,7 +4,7 @@
       name: "default",
       strict: true,
       files: %{
-        included: ["lib/", "test/", "web/", "priv/"],
+        included: ["lib/", "test/"],
         excluded: []
       },
       checks: [
@@ -21,15 +21,20 @@
 
         {Credo.Check.Readability.FunctionNames},
         {Credo.Check.Readability.LargeNumbers},
-        {Credo.Check.Readability.MaxLineLength, max_length: 200},
+        {Credo.Check.Readability.MaxLineLength, priority: :low, max_length: 200},
         {Credo.Check.Readability.ModuleAttributeNames},
         {Credo.Check.Readability.ModuleDoc},
         {Credo.Check.Readability.ModuleNames},
         {Credo.Check.Readability.ParenthesesInCondition},
         {Credo.Check.Readability.PredicateFunctionNames},
+        {Credo.Check.Readability.PreferImplicitTry},
+        {Credo.Check.Readability.RedundantBlankLines},
+        {Credo.Check.Readability.Specs, false},
+        {Credo.Check.Readability.StringSigils},
         {Credo.Check.Readability.TrailingBlankLine},
         {Credo.Check.Readability.TrailingWhiteSpace},
         {Credo.Check.Readability.VariableNames},
+        {Credo.Check.Refactor.DoubleBooleanNegation},
 
         {Credo.Check.Refactor.ABCSize},
         {Credo.Check.Refactor.CaseTrivialMatches},

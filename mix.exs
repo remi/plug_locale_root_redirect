@@ -12,6 +12,7 @@ defmodule PlugLocaleRootRedirect.Mixfile do
      start_permanent: Mix.env == :prod,
      deps: deps(),
      package: package(),
+    dialyzer: dialyzer(),
      name: "Plug Locale Root Redirect",
      source_url: "https://github.com/remiprev/plug_locale_root_redirect",
      homepage_url: "https://github.com/remiprev/plug_locale_root_redirect",
@@ -23,13 +24,18 @@ defmodule PlugLocaleRootRedirect.Mixfile do
     [applications: []]
   end
 
+  def dialyzer do
+    [plt_add_apps: [:plug, :plug_best]]
+  end
+
   defp deps do
     [
       {:plug, "~> 1.0"},
       {:plug_best, "~> 0.2"},
       {:credo, "~> 0.6", only: :dev},
       {:earmark, "~> 0.1", only: :dev},
-      {:ex_doc, "~> 0.11", only: :dev}
+      {:ex_doc, "~> 0.11", only: :dev},
+      {:dialyxir, "~> 0.4", only: :dev}
     ]
   end
 

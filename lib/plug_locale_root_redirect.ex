@@ -1,5 +1,6 @@
 defmodule PlugLocaleRootRedirect do
   @moduledoc """
+  A Plug that uses PlugBest to map '/' route to a path based on the `Accept-Language` HTTP header.
   """
 
   # Imports

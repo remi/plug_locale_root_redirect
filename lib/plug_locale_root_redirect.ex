@@ -8,6 +8,9 @@ defmodule PlugLocaleRootRedirect do
   # Aliases
   alias Plug.Conn
 
+  # Behaviours
+  @behaviour Plug
+
   # Constants
   @root_path "/"
   @location_header "location"
@@ -27,11 +30,12 @@ defmodule PlugLocaleRootRedirect do
   #
   # Types
   @type language :: {String.t, String.t, float}
+  @type opts :: binary | tuple | atom | integer | float | [opts] | %{opts => opts}
 
   @doc """
   Initialize the plug with a list of supported locales.
   """
-  @spec init([{atom, any}]) :: any
+  @spec init(opts) :: opts
   def init(opts), do: Keyword.fetch!(opts, :locales)
 
   @doc """

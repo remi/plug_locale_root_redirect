@@ -15,6 +15,7 @@ defmodule PlugLocaleRootRedirect do
   # Constants
   @root_path "/"
   @location_header "location"
+  @forwarded_port_header "x-forwarded-port"
   @vary_header "vary"
   @vary_value "Accept-Language"
   @status_code 302
@@ -72,7 +73,7 @@ defmodule PlugLocaleRootRedirect do
 
   @spec canonical_port(%Conn{}) :: String.t | integer
   defp canonical_port(conn = %Conn{port: port}) do
-    case get_req_header(conn, "x-forwarded-port") do
+    case get_req_header(conn, @forwarded_port_header) do
       [forwarded_port] -> forwarded_port
       [] -> port
     end

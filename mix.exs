@@ -25,7 +25,9 @@ defmodule PlugLocaleRootRedirect.Mixfile do
   end
 
   def dialyzer do
-    [plt_add_apps: [:plug, :plug_best]]
+    [plt_add_apps: [:plug],
+     plt_file: ".plts/.local.plt",
+     plt_core_path: ".plts"]
   end
 
   defp deps do

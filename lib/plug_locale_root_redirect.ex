@@ -31,7 +31,7 @@ defmodule PlugLocaleRootRedirect do
   """
   #
   # Types
-  @type language :: {String.t, String.t, float}
+  @type language :: {String.t(), String.t(), float}
   @type opts :: binary | tuple | atom | integer | float | [opts] | %{opts => opts}
 
   @doc """
@@ -43,11 +43,13 @@ defmodule PlugLocaleRootRedirect do
   @doc """
   Call the plug.
   """
-  @spec call(%Conn{}, list(atom)) :: %Conn{}
-  def call(conn = %Conn{status: status, request_path: request_path}, locales) when request_path == @root_path and (is_nil(status) or (status < 300 and status >= 400)) do
-    location = conn
-    |> PlugBest.best_language_or_first(locales)
-    |> redirect_location(conn)
+  @spec call(Conn.t(), list(atom)) :: Conn.t()
+  def call(conn = %Conn{status: status, request_path: request_path}, locales)
+      when request_path == @root_path and (is_nil(status) or (status < 300 and status >= 400)) do
+    location =
+      conn
+      |> PlugBest.best_language_or_first(locales)
+      |> redirect_location(conn)
 
     conn
     |> put_resp_header(@location_header, location)
@@ -55,27 +57,40 @@ defmodule PlugLocaleRootRedirect do
     |> send_resp(@status_code, String.replace(@html_template, "%s", location))
     |> halt
   end
+
   def call(conn, _), do: conn
 
-  @spec redirect_location(language, %Conn{}) :: String.t
+  @spec redirect_location(language, Conn.t()) :: String.t()
   defp redirect_location({_, locale, _}, conn) do
     conn
     |> request_uri
-    |> URI.parse
+    |> URI.parse()
+    |> sanitize_empty_query
     |> Map.put(:path, "/#{locale}")
-    |> URI.to_string
+    |> URI.to_string()
   end
 
-  @spec request_uri(%Conn{}) :: String.t
-  defp request_uri(conn = %Conn{scheme: scheme, host: host, request_path: request_path, query_string: query_string}) do
+  @spec request_uri(Conn.t()) :: String.t()
+  defp request_uri(
+         conn = %Conn{
+           scheme: scheme,
+           host: host,
+           request_path: request_path,
+           query_string: query_string
+         }
+       ) do
     "#{scheme}://#{host}:#{canonical_port(conn)}#{request_path}?#{query_string}"
   end
 
-  @spec canonical_port(%Conn{}) :: String.t | integer
+  @spec canonical_port(Conn.t()) :: String.t() | integer
   defp canonical_port(conn = %Conn{port: port}) do
     case get_req_header(conn, @forwarded_port_header) do
       [forwarded_port] -> forwarded_port
       [] -> port
     end
   end
+
+  @spec sanitize_empty_query(%URI{}) :: %URI{}
+  def sanitize_empty_query(uri = %URI{query: ""}), do: Map.put(uri, :query, nil)
+  def sanitize_empty_query(uri), do: uri
 end

@@ -46,8 +46,8 @@ defmodule PlugLocaleRootRedirect.Mixfile do
       {:plug, "~> 1.0"},
       {:plug_best, "~> 0.2"},
       {:credo, "~> 1.0", only: :dev},
-      {:earmark, "~> 0.1", only: :dev},
-      {:ex_doc, "~> 0.11", only: :dev},
+      {:earmark, "~> 1.2", only: :dev},
+      {:ex_doc, "~> 0.19", only: :dev},
       {:dialyxir, "~> 1.0.0-rc.4", only: [:dev], runtime: false}
     ]
   end

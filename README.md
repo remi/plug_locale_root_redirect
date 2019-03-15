@@ -17,7 +17,7 @@ Add `plug_locale_root_redirect` to the `deps` function in your project's `mix.ex
 defp deps do
   [
     …,
-    {:plug_locale_root_redirect, "~> 0.2"}
+    {:plug_locale_root_redirect, "~> 0.3"}
   ]
 end
 ```
@@ -65,6 +65,6 @@ case.
 License
 -------
 
-`PlugLocaleRootRedirect` is © 2017 [Rémi Prévost](http://exomel.com) and may be
+`PlugLocaleRootRedirect` is © 2017-2019 [Rémi Prévost](http://exomel.com) and may be
 freely distributed under the [MIT license](https://github.com/remiprev/plug_locale_root_redirect/blob/master/LICENSE.md). See the
 `LICENSE.md` file for more information.
